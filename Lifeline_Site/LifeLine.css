@@ -1,13 +1,17 @@
 body {
-    width: 99%;
-    height: 97vh;
-    display: flex;
-    justify-content:center;
-    align-items: center;
+    width: 100%;
     perspective: 1100px;
     background: #ccc;
   }
-  
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 100svh;
+  }
   .book {
     transform-style: preserve-3d;
     position: relative;
