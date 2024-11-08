@@ -5,22 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="LifeLine.css">
     <script src="LifeLine.js"></script>
-    <title>Document</title>
+    <title>LifeLine</title>
 </head>
 <body>
     <div class="container">
-        <div class="imagem"><img src="" alt=""></div>
-        <div class="book" id="livro">
-            <div class="back">capa</div>
-            <div class="page6" id="pagina6">
-                <div class="conteudo">
-                    <h1><b>Bem vindo!</b></h1>
-                    <u>Mais que um diário<br> uma linha da vida<br></u><br>
-                        <button onclick="entrar()">Entrar</button>    
-                    </div>
+        <div class="livro">
+            <div class="verso folha"></div>
+            <div class="pag6 folha" id="pag1">
+                
                 </div>
                 <!--Sweetalert2 - Site de pop up-->
-                <div class="page5">
+                <div class="pag5 folha">
+                </div>
+                <div class="pag4 folha">
+                    <div class="conteudo">
+                        <h1><b>Bem vindo!</b></h1>
+                        <u>Mais que um diário<br> uma linha da vida<br></u><br>
+                            <button onclick="entrar()">Entrar</button> 
+                        </div>
+                        <div class="proxPag">
+                            <button onclick="passarPagina(1)">&rarr;</button>
+                        </div>   
+                </div>
+                <div class="pag3 folha">
                     <div class="conteudo cInvertido">
                         <h1>Objetivo</h1>
                         _____________________<br>
@@ -36,14 +43,14 @@
                         _____________________<br>
                     </div>
                 </div>
-                <div class="page4" id="pagina4">a
-                </div>
-                <div class="page3">b</div>
-                <div class="page2" id="pagina2">c</div>
-                <div class="page1">d</div>
-                <div class="front">
+                <div class="pag2 folha">pag2</div>
+                <div class="pag1 folha">pag1</div>
+                <div class="frente folha">
                 <h1><strong>LifeLine</strong></h1>
-            </div>
+                    <div class="proxPag">
+                        <button onclick="passarPagina(1)">&rarr;</button>
+                    </div>  
+                </div>
         </div>
     </div>
 </body>

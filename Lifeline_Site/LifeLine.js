@@ -1,14 +1,27 @@
-function entrar() {
-    const livro = document.getElementById("livro")
-    const pag6 = document.getElementById("pagina6")
-    const pag4 = document.getElementById("pagina4")
-    const pag2 = document.getElementById("pagina2")
+var paginaAtual = 0; // Página atual
+    function passarPagina(direcao) {
+        var frente = document.getElementsByClassName('frente')
+        if (direcao == 1){
+            frente.style.transform = 'rotateY(${-180}deg)'
+        }
 
-    
-    livro.classList.add("escala")
-    pag6.classList.add("transicao")
-    livro.classList.add("escala2")
-    pag4.classList.add("transicao")
-    livro.classList.add("escala3")
-    pag2.classList.add("transicao")
-}
+        // Aplica a rotação 3D para simular a virada da página
+        // const rotationDegree = -180 * (currentPage - 1);
+        // book.style.transform = `rotateY(${rotationDegree}deg)`;
+    }
+
+    // Funções para avançar ou voltar as páginas
+    // document.getElementById("nextButton").addEventListener("click", () => {
+    //     if (currentPage < totalPages) {
+    //         goToPage(currentPage + 1);
+    //     }
+    // });
+
+    // document.getElementById("prevButton").addEventListener("click", () => {
+    //     if (currentPage > 1) {
+    //         goToPage(currentPage - 1);
+    //     }
+    // });
+
+    // // Inicializa o livro na primeira página
+    // goToPage(currentPage);

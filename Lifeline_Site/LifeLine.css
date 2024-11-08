@@ -12,15 +12,15 @@ body {
     width: 90%;
     height: 100svh;
   }
-  .book {
+  .livro {
     transform-style: preserve-3d;
     position: relative;
     height: 300px;
-    cursor: pointer;
     backface-visibility: visible;
+    box-shadow: 2px 2px black;
   }
   
-  .front, .back, .page1, .page2, .page3, .page4, .page5, .page6{
+  .frente, .verso, .pag1, .pag2, .pag3, .pag4, .pag5, .pag6{
     text-align: justify;
     display: flex;
     flex-direction: column;
@@ -54,132 +54,115 @@ body {
 
   }
 
-  .book:hover .cInvertido  {
+  .livro:hover .cInvertido  {
     display: initial;
     transform: rotate3d(0, 1, 0,180deg );
   padding: 10px;
 
   }
   
-  .front, .back {
-    background: rgb(92, 86, 86);
+  .frente, .verso {
+    color: white;
+    background: black;
     text-align: center;
   }
   
-  .front, .page1, .page3, .page5 {
+  .frente, .pag1, .pag2, .pag3 {
     border-bottom-right-radius: .5em;
     border-top-right-radius: .5em;
   }
   
-  .back, .page2, .page4, .page6 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: justify;
+  .pag4, .pag5, .pag6, .verso {
     border-bottom-right-radius: .5em;
     border-top-right-radius: .5em;
   }
 
 
 
- .book:hover .conteudo{
+ .livro:hover .conteudo{
   scale: (1.5);  
   padding: 10px;
  }
   
-  .page1 { 
+  .pag1 { 
     background: #fdfdfd;
   }
   
-  .page2 {
+  .pag2 {
     background: #fdfdfd;
   }
   
-  .page3 {
+  .pag3 {
     background: #fdfdfd;
   }
   
-  .page4 {
+  .pag4 {
     background: #fdfdfd;
   }
   
-  .page5 {
+  .pag5 {
     background: #fdfdfd;
   }
   
-  .page6 {
+  .pag6 {
     background: #fdfdfd;
   }
   
 
   /*Paginas da esquerda*/
-  .book:hover .front {
+  /* .livro:hover .frente {
     transform: rotateY(-180deg) scale(1.5);
   }
   
-  .book:hover .page1 {
+  .livro:hover .pag1 {
     transform: rotateY(-170deg) scale(1.5);
     box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
   }
 
-  .book:hover .page3 {
+  .livro:hover .pag2 {
     transform: rotateY(-165deg) scale(1.5);
     box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
   }
 
-  .book:hover .page5 {
+  .livro:hover .pag3 {
     transform: rotateY(-160deg) scale(1.5);
     box-shadow: 0 1em 3em 0.4em rgba(0, 0, 0, 1);
   }
 
   /*Paginas da direita*/
-  .book:hover .back {
-    transform: scale(1.5);
-  }
   
-  .book:hover .page2 {
-    transform: rotateY(-10deg) scale(1.5);
+  /* .livro:hover .pag4 {
+    transform: rotateY(-20deg) scale(1.5);
     box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
   }
   
-  .book:hover .page4 {
+  .livro:hover .pag5 {
     transform: rotateY(-15deg) scale(1.5);
     box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
   }
   
-  .book:hover .page6 {
-    transform: rotateY(-20deg) scale(1.5);
+  .livro:hover .pag6 {
+    transform: rotateY(-10deg) scale(1.5);
     box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 1);
   }
   
-  /*Função passar páginas*/
+  .livro:hover .verso {
+    transform: scale(1.5);
+  }  */
 
-  .escala{
-    transform: scale(2);
-  }
-  .escala2{
-    transform: scale(2.5);
-  }
-  .escala3{
-    transform: scale(3);
-  }
+.proxPag {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 
-  .transicao{
-    transition: transform .1s ease;
-    transform: rotateY(-180deg) scale(2);
-  }
+.proxPag button{
+  color: white;
+  font-size: 20px;
+  background-color: transparent;
+  border: transparent;
+}
 
-  .transicao2{
-    transition: transform .1s ease;
-    transform: rotateY(-180deg) scale(2.5);
-  }
+.passarPagina {
 
-  .transicao3{
-    transition: transform .1s ease;
-    transform: rotateY(-180deg) scale(3);
-
-  }
-  
-
-  
+}

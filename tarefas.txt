@@ -1,6 +1,15 @@
-Função para passar paginas e ir para 
+Função para passar paginas 
 
-+Paginas -- depois
++Paginas 
 
-perspectiva- FEITO
+Agradecimentos na capa
+
+Tela de login/cadastro
+
+estilização do caderno
+
+mysql blob
+
+turn.js
+
 
