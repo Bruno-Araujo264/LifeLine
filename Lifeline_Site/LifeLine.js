@@ -1,27 +1,42 @@
-var paginaAtual = 0; // Página atual
-    function passarPagina(direcao) {
-        var frente = document.getElementsByClassName('frente')
-        if (direcao == 1){
-            frente.style.transform = 'rotateY(${-180}deg)'
-        }
+const btnVoltar = document.querySelector('#voltar')
+const btnAvancar = document.querySelector('#avançar')
+const livro = document.querySelector("#livro")
 
-        // Aplica a rotação 3D para simular a virada da página
-        // const rotationDegree = -180 * (currentPage - 1);
-        // book.style.transform = `rotateY(${rotationDegree}deg)`;
+const papel1 = document.getElementById("#p1")
+const papel2 = document.getElementById("#p2")
+const papel3 = document.getElementById("#p3")
+// https://www.youtube.com/watch?v=0kD6ff2J3BQ&ab_channel=CodingStar
+btnAvancar.addEventListener("click",avancarPagina)
+btnVoltar.addEventListener("click",voltarPagina)
+
+
+var paginaAtual = 1
+var numeroDePaginas = 3
+var ultimaPagina = paginaAtual + 1
+
+function abrirLivro() {
+
+}
+
+function fecharLivro() {
+
+}
+
+function avancarPagina() {
+    if (paginaAtual < ultimaPagina){
+        for (pagina = paginaAtual;pagina < ultimaPagina; pagina++){
+            if (pagina == 1){
+                abrirLivro()
+                papel1.classList.add("virada")
+                break
+            }
+            if (pagina == 2) {
+                papel2.classList.add("virada")
+                break
+            } else {
+                papel3.classList.add("virada")
+                break
+            }
+        } paginaAtual++
     }
-
-    // Funções para avançar ou voltar as páginas
-    // document.getElementById("nextButton").addEventListener("click", () => {
-    //     if (currentPage < totalPages) {
-    //         goToPage(currentPage + 1);
-    //     }
-    // });
-
-    // document.getElementById("prevButton").addEventListener("click", () => {
-    //     if (currentPage > 1) {
-    //         goToPage(currentPage - 1);
-    //     }
-    // });
-
-    // // Inicializa o livro na primeira página
-    // goToPage(currentPage);
+}

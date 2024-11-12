@@ -4,55 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="LifeLine.css">
+    <link rel="icon" href="imgs/caderno.png">
     <script src="LifeLine.js"></script>
     <title>LifeLine</title>
 </head>
 <body>
-    <div class="container">
-        <div class="livro">
-            <div class="verso folha"></div>
-            <div class="pag6 folha" id="pag1">
-                
+    <!-- Botão voltar -->
+     <button id="voltar">
+        <i class="seta-esquerda">&larr;</i>
+     </button>
+
+
+    <!-- Livro -->
+     <div id="livro" class="livro">
+        <!-- pagina1/2 -->
+         <div id="p1" class="papel">
+            <div class="frente">
+                <div id="f1" class="conteudo-frente">
+                    <h1>frente 1</h1>
                 </div>
-                <!--Sweetalert2 - Site de pop up-->
-                <div class="pag5 folha">
+            </div>
+            <div class="verso">
+                <div id="v1" class="conteudo-verso">
+                    <h1>verso 1</h1>
                 </div>
-                <div class="pag4 folha">
-                    <div class="conteudo">
-                        <h1><b>Bem vindo!</b></h1>
-                        <u>Mais que um diário<br> uma linha da vida<br></u><br>
-                            <button onclick="entrar()">Entrar</button> 
-                        </div>
-                        <div class="proxPag">
-                            <button onclick="passarPagina(1)">&rarr;</button>
-                        </div>   
+            </div>
+         </div>
+         <!-- pagina3/4 -->
+         <div id="p2" class="papel">
+            <div class="frente">
+                <div id="f2" class="conteudo-frente">
+                    <h1>frente 2</h1>
                 </div>
-                <div class="pag3 folha">
-                    <div class="conteudo cInvertido">
-                        <h1>Objetivo</h1>
-                        _____________________<br>
-                        _____________________<br>
-                        _____________________<br>
-                        _____________________<br>
-                        _____________________<br>
-                        _____________________<br>
-                        _____________________<br>
-                        _____________________<br>
-                        _____________________<br>
-                        _____________________<br>
-                        _____________________<br>
-                    </div>
+            </div>
+            <div class="verso">
+                <div id="v2" class="conteudo-verso">
+                    <h1>verso 2</h1>
                 </div>
-                <div class="pag2 folha">pag2</div>
-                <div class="pag1 folha">pag1</div>
-                <div class="frente folha">
-                <h1><strong>LifeLine</strong></h1>
-                    <div class="proxPag">
-                        <button onclick="passarPagina(1)">&rarr;</button>
-                    </div>  
+            </div>
+         </div>
+         <!-- pagina5/6 -->
+         <div id="p3" class="papel">
+            <div class="frente">
+                <div id="f3" class="conteudo-frente">
+                    <h1>frente 3</h1>
                 </div>
-        </div>
-    </div>
+            </div>
+            <div class="verso">
+                <div id="v3" class="conteudo-verso">
+                    <h1>verso 3</h1>
+                </div>
+            </div>
+         </div>
+     </div>
+
+
+    <!-- Botão avançar -->
+    <button id="avançar">
+        <i class="seta-direita">&rarr;</i>
+     </button>
+
+    <footer>
+        Feito por Bruno Araújo
+    </footer>
 </body>
 </html>
 
