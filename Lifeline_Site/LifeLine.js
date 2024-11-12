@@ -1,42 +1,80 @@
-const btnVoltar = document.querySelector('#voltar')
-const btnAvancar = document.querySelector('#avançar')
-const livro = document.querySelector("#livro")
+document.addEventListener("DOMContentLoaded", function() {
+    const btnVoltar = document.querySelector('#voltar');
+    const btnAvancar = document.querySelector('#avançar');
+    const livro = document.querySelector("#livro");
 
-const papel1 = document.getElementById("#p1")
-const papel2 = document.getElementById("#p2")
-const papel3 = document.getElementById("#p3")
-// https://www.youtube.com/watch?v=0kD6ff2J3BQ&ab_channel=CodingStar
-btnAvancar.addEventListener("click",avancarPagina)
-btnVoltar.addEventListener("click",voltarPagina)
+    const papel1 = document.getElementById("p1");
+    const papel2 = document.getElementById("p2");
+    const papel3 = document.getElementById("p3");
 
+    btnAvancar.addEventListener("click", avancarPagina);
+    btnVoltar.addEventListener("click", voltarPagina);
 
-var paginaAtual = 1
-var numeroDePaginas = 3
-var ultimaPagina = paginaAtual + 1
+    let paginaAtual = 1;
+    const numeroDePaginas = 3;
+    const ultimaPagina = numeroDePaginas + 1;
 
-function abrirLivro() {
-
-}
-
-function fecharLivro() {
-
-}
-
-function avancarPagina() {
-    if (paginaAtual < ultimaPagina){
-        for (pagina = paginaAtual;pagina < ultimaPagina; pagina++){
-            if (pagina == 1){
-                abrirLivro()
-                papel1.classList.add("virada")
-                break
-            }
-            if (pagina == 2) {
-                papel2.classList.add("virada")
-                break
-            } else {
-                papel3.classList.add("virada")
-                break
-            }
-        } paginaAtual++
+    function abrirLivro() {
+        livro.style.transform = "translateX(50%)"
+        btnVoltar.style.transform = "translateX(-180px)"
+        btnAvancar.style.transform = "translateX(180px)"
     }
-}
+
+    function fecharLivro(estaNoComeco) {
+        if(estaNoComeco){
+            btnVoltar.style.display = 'none'
+            livro.style.transform = "translateX(0%)"
+        } else {
+            livro.style.transform = "translateX(100%)"
+        }
+        btnVoltar.style.transform = "translateX(0px)"
+        btnAvancar.style.transform = "translateX(0px)"
+    }
+
+    function avancarPagina() {
+        if (paginaAtual < ultimaPagina){
+            for (pagina = paginaAtual;pagina < ultimaPagina; pagina++){
+                if (pagina == 1){
+                    abrirLivro()
+                    papel1.classList.add("virada")
+                    papel1.style.zIndex = 1
+                    break
+                }
+                if (pagina == 2) {
+                    papel2.classList.add("virada")
+                    papel2.style.zIndex = 2
+                    break
+                } else {
+                    papel3.classList.add("virada")
+                    papel3.style.zIndex = 3
+                    fecharLivro(false)
+                    break
+                }
+            } paginaAtual++
+        }
+    }
+
+    function voltarPagina() {
+        if (paginaAtual > 1) {
+            for (pagina = paginaAtual;pagina <= ultimaPagina; pagina++){
+                if (pagina == 2){
+                    fecharLivro(true)
+                    papel1.classList.remove("virada");
+                    papel1.style.zIndex = 3
+                    break;
+                }
+                if (pagina == 3) {
+                    papel2.classList.remove("virada");
+                    papel2.style.zIndex = 2
+                        break;
+                } else {
+                    abrirLivro()
+                    papel3.classList.remove("virada");
+                    papel3.style.zIndex = 1
+                    break;
+                }
+            }
+            paginaAtual--
+        }
+    }
+});
