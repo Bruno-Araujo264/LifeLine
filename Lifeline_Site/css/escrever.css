@@ -1,0 +1,301 @@
+
+body {
+    margin: 0;
+    height: 100svh;
+    width: 100svw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Mistral Graff";
+}
+
+@font-face {
+    font-family: "Mistral Graff";
+    src: url("mistral-graff/OPTIMistral-Graff.otf");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+.navbar{
+    background-color: #D8BD8A;
+    width: 100%;
+    height: 80px;
+    position: relative;
+    box-shadow: inset 0px -10px 20px rgba(0, 0, 0, 0.5);
+
+    .conteudo-navbar {
+        margin-top: -10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    img{
+        margin-right: 1%;
+        width: 50px;
+        height: 50px;
+        transition: transform 0.5s;
+
+    }
+    
+    img:hover{
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+
+    .perfil {
+        margin-left: 2%;
+        width: 25%;
+        display: flex;
+    }
+    
+    p {
+        font-size: 30px;
+    }
+}
+
+.tela-principal {
+    z-index: 0;
+    height: 93.3%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+
+
+#menu {
+    box-shadow: inset -10px 10px 20px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    position: relative;
+    height: 100%;
+    background-color: #D8BD8A;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: left 0.5s;
+
+    .opcao {
+        margin-left: 10%;
+        display: flex;
+        align-items: center;
+        transition: transform  0.3s ease;
+    
+        
+        img{
+            width: 50px;
+            height: 50px;
+            margin-left: 5px;
+            margin-right: 15px;
+        }
+        
+        p {
+            font-size: 30px;
+        }
+    }
+    
+    #opcoes {
+        width: 100%;
+        user-select: none;
+        background-color: transparent;
+        
+    }
+    .sair{
+        margin-left: 10%;
+        margin-bottom: 3.7%;
+        display: flex;
+        align-items: center;
+        transition: transform  0.3s ease;
+    
+        
+        img{
+            width: 50px;
+            height: 50px;
+            margin-left: 5px;
+            margin-right: 15px;
+        }
+        
+        p {
+            font-size: 30px;
+        }
+    }
+    
+}
+
+.sair:hover{
+    background-color: #D8BD8A;
+    cursor: pointer;
+    transform: scale(1.25);  
+    box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.5);
+}
+
+.opcao:hover{
+    background-color: #D8BD8A;
+    cursor: pointer;
+    transform: scale(1.25);  
+    box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.5);
+}
+
+.livro {
+
+    box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.5), inset -10px -10px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: flex;
+    width: 82%;
+    height:100%;
+    background-color: #582817;
+    
+    .papel{
+      margin: 3%;
+      width: 100%;
+      height: 90%;
+    }
+
+    #topo {
+        width: 100%;
+        height: 15%;
+        input{
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            height: 15%;
+            background-color: transparent;
+            width: 30%;
+            outline: none;
+            border: none;
+            box-shadow: inset 0px -1px 0px 0px black;
+        }
+
+        span{
+            font-size: 30px;
+        }
+
+    }
+
+    #topo input::placeholder {
+        color: black;
+    }
+
+    span{
+        margin: 1%;
+      font-size: 30px;
+    }
+
+    
+    #sentimentos {
+        margin-top: 1%;
+        display: flex;
+        width: 100%;
+        height: 20%;
+        justify-content: space-evenly;
+    }
+    
+    .emocao {
+        display: flex;
+        flex-direction: column;
+        text-align: justify;
+        p{
+            font-size: 30px;
+        }
+    }
+
+
+    
+    img {
+        margin-left: 5px;
+        width: 50px;
+        height: 50px;
+    }
+    #feliz:hover{
+        border-radius: 100%;
+        cursor: pointer;
+        transform: scale(1.5);
+    }
+    #triste:hover{
+        border-radius: 100%;
+        cursor: pointer;
+        transform: scale(1.5);
+    }
+    #raiva:hover{
+        border-radius: 100%;
+        cursor: pointer;
+        transform: scale(1.5);
+    }
+    #surpreso:hover{
+        border-radius: 100%;
+        cursor: pointer;
+        transform: scale(1.5);
+    }
+    #medo:hover{
+        border-radius: 100%;
+        cursor: pointer;
+        transform: scale(1.5);
+    }
+
+    #acontecimento{
+        cursor:text;
+        border-radius: 10px;
+        width: 100%;
+        height: 40%;
+        position: relative;
+        background-color: white;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    #acontecimento input{
+        z-index: 0;
+        border: none    ;
+        outline: none;
+        background-color: transparent;
+    }
+
+
+    
+    #acontecimento img{
+        position: absolute;
+        z-index: 1;
+        bottom: 1%;
+        right: 0.5%;
+        width: 40px;
+        height: 40px;
+        transition: transform 0.5s;
+    }
+
+    #acontecimento img:hover{
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+    
+    #btn-enviar{
+        position: absolute;
+        width: 100px;
+        right: 10%;
+        margin-top: 5%;
+        background-color: #fbeee0;
+        color: black;
+        cursor: pointer;
+        box-shadow: black 4px 4px 0 0;
+        border: 2px solid black;
+        border-radius: 30px;
+        
+        
+    }         
+    #btn-enviar:hover {
+        background-color: #fff;
+    }
+    
+    #btn-enviar:active {
+        box-shadow: black 2px 2px 0 0;
+        transform: translate(2px, 2px);
+    }
+    
+}
+
+
+
+  

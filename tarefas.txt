@@ -1,15 +1,15 @@
-Função para passar paginas 
+Função para passar paginas FEITO
 
-+Paginas 
++Paginas inutilizada
 
-Agradecimentos na capa
+Agradecimentos na capa Em andamento
 
-Tela de login/cadastro
+Tela de login/cadastro FEITO
 
-estilização do caderno
+estilização do caderno Em andamento
 
-mysql blob
+mysql blob 
 
-turn.js
+
 
 

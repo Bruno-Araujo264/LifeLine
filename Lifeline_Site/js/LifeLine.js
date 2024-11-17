@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function fecharLivro(estaNoComeco) {
         if(estaNoComeco){
-            btnVoltar.style.display = 'none'
             livro.style.transform = "translateX(0%)"
         } else {
             livro.style.transform = "translateX(100%)"
