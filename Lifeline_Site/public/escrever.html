@@ -42,7 +42,9 @@
                     <span><b>Data:</b></span>
                     <input type="date" id="inp_data" placeholder="DD/MM/AAAA">
                 </div>
-                    <span>Como você está se sentindo</span><br>
+                    <center>
+                        <span>Como você está se sentindo</span><br>
+                    </center>
                     <div id="sentimentos">
                         <div class="emocao">
                             <img src="../imgs/feliz.png" id="feliz" class="emoji" draggable="false" onclick="chooseFeeling('feliz')">
@@ -66,7 +68,7 @@
                         </div>
                     </div>
                     <div id="acontecimento" onclick="inp_acontecimento.focus()">
-                        <input type="text" id="inp_acontecimento" placeholder="Escreva o que aconteceu...">
+                        <textarea id="inp_acontecimento" placeholder="Escreva o que aconteceu..."></textarea>
                         <div class="imagem">
                             <img src="../imgs/foto.png">
                         </div>
