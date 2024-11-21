@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function abrirLivro() {
         livro.style.transform = "translateX(50%)"
-        btnVoltar.style.transform = "translateX(-180px)"
-        btnAvancar.style.transform = "translateX(180px)"
+        btnVoltar.style.transform = "translateX(-240px)"
+        btnAvancar.style.transform = "translateX(240px)"
     }
 
     function fecharLivro(estaNoComeco) {

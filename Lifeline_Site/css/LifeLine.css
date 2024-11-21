@@ -5,8 +5,7 @@
 }
 
 body {
-  background-image: url(../imgs/AdobeStock_226300017_Preview.jpeg);
-  background-repeat: no-repeat;
+  background-image: url("../imgs/post-its-rubber-pencil.jpg");
   background-position: center;
   background-size: cover;
   height: 100svh;
@@ -25,8 +24,8 @@ body {
 
 .livro {
   position: relative;
-  width: 350px;
-  height: 500px;
+  width: 450px;
+  height: 600px;
   transition: transform 0.5s;
   
 }
@@ -40,7 +39,7 @@ body {
   perspective: 1500px;
 
   #f1{
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.705),-2px -2px 10px rgba(0, 0, 0, 0.705);
+    text-shadow: -5px 5px 15px rgba(0, 0, 0, 0.4),5px -5px 15px rgba(255, 255, 255, 0.4);
   }
 
 }
@@ -49,20 +48,19 @@ body {
 
 .frente,.verso{
   color: black;
-  background-color: #582817;
+  background-color: #644121;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   transform-origin: left;
-  transition: transform 0.5s;
+  transition: transform 0.5s ease;
 }
 
 .frente {
   z-index: 1;
   backface-visibility: hidden;
-  border-left: 2px wheat solid;
 }
 
 .verso {
@@ -74,20 +72,41 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 20px;
+  background-position: center;
+  background-size: cover;
+
+  input{
+    padding-top: 15px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+  }
+
+  input::placeholder{
+    font-size: 30px;
+    font-family: "Mistral Graff";
+    color: black;
+  }
+
+}
+
+
+
+.conteudo-frente {
+  background-image: url("../imgs/folha.png");
+
 }
 
 .conteudo-verso{
+  background-image: url("../imgs/folhaInvertida.png");
   transform: rotateY(-180deg);
 }
 
-.conteudo-verso h1{
-  top: 0;
-}
+
 
 span{
-  font-size: 20px;
+  font-size: 30px;
 }
 
 /* Ordem das páginas */
@@ -103,6 +122,38 @@ span{
   z-index: 1;
 }
 
+#f1 {
+  justify-content: center;
+  align-items: center;
+  background-image: url("../imgs/41904.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+#v3 {
+  background-image: url("../imgs/capaInvertida.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+#v1,#v3{
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.25),0px 0px 20px 10px rgba(0, 0, 0, 0.25);
+}
+
+#f2,#f3{
+  box-shadow: inset 10px 0px 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+#v2{
+  box-shadow: inset -10px 0px 10px 2px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+  padding-bottom: 10px;
+}
+
+
+
 /* Efeito página virada */
 
 .virada .frente,
@@ -111,15 +162,17 @@ span{
 }
 
 button{
+  font-size: 30px;
+  font-family: "Mistral Graff";
   cursor: pointer;
   background-color: transparent;
   border: none;
   margin: 10px;
-  transition: transform 0.5s;
+  transition: opacity 0.5s;
 }
 
 button:hover{
-  transform: scale(1.3);
+  opacity: 0.5;
 }
 
 i{
@@ -143,4 +196,5 @@ footer {
   background-color: transparent;
   color: black;
   width: 100%;
+  font-size: 25px;
 }
