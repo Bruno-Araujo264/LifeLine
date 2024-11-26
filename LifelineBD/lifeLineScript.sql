@@ -1,28 +1,29 @@
 create database LifeLine;
 use LifeLine;
 
+
+
 CREATE TABLE usuario (
   idusuario INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(45),
   senha VARCHAR(45),
-  email VARCHAR(60));
+  email VARCHAR(60),
+  titulo VARCHAR(45)
+  );
   
-CREATE TABLE livro (
-  idlivro INT PRIMARY KEY AUTO_INCREMENT,
-  titulo VARCHAR(45) NULL,
-  fkUsuario INT NOT NULL,
-  CONSTRAINT fkLivroUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idusuario));
+  describe usuario;
 
 CREATE TABLE registros (
   idregistro INT,
   assunto VARCHAR(45),
   emocao VARCHAR(10),
+  conteudo varchar(1000),
   dtRegistro DATE,
-  imagem BLOB,
-  fkLivro INT,
+  -- imagem BLOB,
   fkUsuario INT,
-  CONSTRAINT pkRegistro PRIMARY KEY (idregistro,fkLivro,fkUsuario),
-  CONSTRAINT fkRegistrosLivro FOREIGN KEY (fkLivro) REFERENCES livro(idlivro),
-  CONSTRAINT fkRegistrosUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario(fkUsuario));
+  CONSTRAINT pkRegistro PRIMARY KEY (idregistro,fkUsuario),
+  CONSTRAINT fkRegistrosUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idusuario));
+
+select * from usuario;
 
 

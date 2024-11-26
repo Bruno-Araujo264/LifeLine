@@ -12,12 +12,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Mistral Graff";
+  font-family: "Paradise";
 }
 
 @font-face {
-  font-family: "Mistral Graff";
-  src: url("../mistral-graff/OPTIMistral-Graff.otf");
+  font-family: "Paradise";
+  src: url("../birds_of_paradise/Birds\ of\ Paradise\ ©\ PERSONAL\ USE\ ONLY.ttf");
   font-weight: normal;
   font-style: normal;
 }
@@ -55,7 +55,7 @@ body {
   top: 0;
   left: 0;
   transform-origin: left;
-  transition: transform 0.5s ease;
+  transition: transform 1s ease-in;
 }
 
 .frente {
@@ -72,12 +72,14 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 25px;
   background-position: center;
   background-size: cover;
 
   input{
-    padding-top: 15px;
+    font-size: 30px;
+    font-family: "Paradise" ;
+    padding-top: 20px;
     outline: none;
     background-color: transparent;
     border: none;
@@ -85,7 +87,7 @@ body {
 
   input::placeholder{
     font-size: 30px;
-    font-family: "Mistral Graff";
+    font-family: "Paradise";
     color: black;
   }
 
@@ -144,6 +146,10 @@ span{
   box-shadow: inset 10px 0px 10px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* #f2 {
+  justify-content: space-between;
+} */
+
 #v2{
   box-shadow: inset -10px 0px 10px 2px rgba(0, 0, 0, 0.25);
 }
@@ -163,7 +169,7 @@ h1 {
 
 button{
   font-size: 30px;
-  font-family: "Mistral Graff";
+  font-family: "Paradise";
   cursor: pointer;
   background-color: transparent;
   border: none;

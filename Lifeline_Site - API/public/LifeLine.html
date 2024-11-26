@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/LifeLine.css">
+    <link rel="icon" href="imgs/caderno.png">
+    <script src="js/LifeLine.js"></script>
+    <title>LifeLine</title>
+</head>
+<body>
+<audio id="paginaVirando" src="audio/page-flip1-178322.mp3"></audio>
+
+    <!-- Botão voltar -->
+     <button id="voltar" onclick="paginaVirando.play()">
+        <i class="seta-esquerda">&larr;</i>
+     </button>
+
+
+    <!-- Livro -->
+     <div id="livro" class="livro">
+        <!-- pagina1/2 -->
+         <div id="p1" class="papel">
+            <div class="frente capaCaderno">
+                <div id="f1" class="conteudo-frente">
+                    <h1>Lifeline</h1>
+                    <footer>
+                        Feito por Bruno Araújo
+                    </footer>
+                </div>
+            </div>
+            <div class="verso">
+                <div id="v1" class="conteudo-verso">
+                    <h1>Bem vindo,</h1>
+                    <span>
+                        Lifeline procura oferecer um ambiente
+                        privado para que você possa guardar os momentos
+                        e aprender a apreciar cada pequena experiência 
+                        que você têm ou teve em sua vida.
+                    </span>
+                </div>
+            </div>
+         </div>
+         <!-- pagina3/4 -->
+         <div id="p2" class="papel">
+            <div class="frente">
+                <div id="f2" class="conteudo-frente">
+                    <span><B>S</B>e você já possui um livro, insira abaixo seu email e senha para escrevermos mais uma página juntos.
+                        </span>
+                    <input type="text" id="inp_emailLogin" placeholder="Escreva aqui o seu email"><br>
+                    <input type="password" id="inp_senhaLogin" placeholder="Escreva aqui a sua senha"><br>
+                    <button onclick="entrar()">Entrar</button>
+                </div>
+            </div>
+            <div class="verso">
+                <div id="v2" class="conteudo-verso">
+                    <span><b>C</b>
+                        ada livro possui uma história totalmente nova e indescrítivel, está na hora de saber como será o seu livro.
+                        Insira abaixo as informações necessárias para iniciarmos essa jornada.
+                        E não se esqueça que todo bom livro, tem um ótimo título.
+                    </span>
+                    <input type="text" id="inp_titulo" placeholder="Escreva o titulo do seu livro"><br>
+                    <input type="text" id="inp_nome" placeholder="Escreva o seu nome"><br>
+                    <input type="text" id="inp_emailCadastro" placeholder="Escreva aqui o seu email"><br>
+                    <input type="password" id="inp_senhaCadastro" placeholder="Escreva aqui a sua senha"><br>
+                    <button onclick="cadastrar()">Cadastrar</button>
+                </div>
+            </div>
+         </div>
+         <!-- pagina5/6 -->
+         <div id="p3" class="papel">
+            <div class="frente">
+                <div id="f3" class="conteudo-frente">
+                    <H1>ONU</H1>
+                    <span>Esse site segue os principios da onu, churusbangus churusbangus</span>
+                </div>
+            </div>
+            <div class="verso">
+                <div id="v3" class="conteudo-verso">
+                    <h1>Agradecimentos</h1>
+                    <span> O desenvolvimento deste site 
+                    </span>
+                </div>
+            </div>
+         </div>
+     </div>
+
+    <!-- Botão avançar -->
+    <button id="avançar" onclick="paginaVirando.play()">
+        <i class="seta-direita">&rarr;</i>
+     </button>
+
+</body>
+</html>
+
+<script>
+    function cadastrar() {
+
+//Recupere o valor da nova input pelo nome do id
+// Agora vá para o método fetch logo abaixo
+var nomeVar = inp_nome.value;
+var senhaVar = inp_senhaCadastro.value;
+var emailVar = inp_emailCadastro.value;
+var tituloVar = inp_titulo.value;
+
+// Verificando se há algum campo em branco
+if (
+  nomeVar == "" ||
+  senhaVar == "" ||
+  emailVar == "" ||
+  tituloVar == ""
+) {
+  alert("Campos em branco")
+}
+
+// Enviando o valor da nova input
+fetch("/usuarios/cadastrar", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    // crie um atributo que recebe o valor recuperado aqui
+    // Agora vá para o arquivo routes/usuario.js
+    nomeServer: nomeVar,
+    senhaServer: senhaVar,
+    emailServer: emailVar,
+    tituloServer: tituloVar
+  }),
+})
+  .then(function (resposta) {
+    console.log("resposta: ", resposta);
+
+    if (resposta.ok) {
+
+      setTimeout(() => {
+        window.location = "escrever.html";
+      }, "2000");
+
+      limparFormulario();
+    } else {
+      throw "Houve um erro ao tentar realizar o cadastro!";
+    }
+  })
+  .catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+  });
+
+return false;
+}
+
+function entrar() {
+
+        var emailVar = inp_emailLogin.value;
+        var senhaVar = inp_senhaLogin.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "escrever.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+
+</script>
