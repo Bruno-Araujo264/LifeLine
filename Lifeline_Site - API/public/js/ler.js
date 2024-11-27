@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function abrirLivro() {
         livro.style.transform = "translateX(50%)"
-        btnVoltar.style.transform = "translateX(-180px)"
-        btnAvancar.style.transform = "translateX(180px)"
+        btnVoltar.style.transform = "translateX(-240px)"
+        btnAvancar.style.transform = "translateX(240px)"
     }
 
     function fecharLivro(estaNoComeco) {
@@ -36,7 +36,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (pagina == 1){
                     abrirLivro()
                     papel1.classList.add("virada")
-                    papel1.style.zIndex = 1
+                    setTimeout(() => {
+                        papel1.style.zIndex = 1
+                      }, 1000);
                     break
                 }
                 if (pagina == 2) {
