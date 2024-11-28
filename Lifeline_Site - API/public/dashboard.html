@@ -75,7 +75,7 @@
         <div id="p3" class="papel">
             <div class="frente">
                 <div id="f3" class="conteudo-frente">
-                    
+                    <canvas id="graficoBarraTopEmocoes"></canvas>
                 </div>
             </div>
             <div class="verso">
@@ -113,9 +113,24 @@
         
     },
     options: {
+        
         scales: {
         y: {
-            beginAtZero: true
+            beginAtZero: true,
+            ticks: {
+                    color: 'black',
+                    font: {
+                        size: 14 
+                    }
+                }
+        },
+        x:{
+            ticks: {
+                    color: 'black',
+                    font: {
+                        size: 14 
+                    }
+                }
         }
         },
         
@@ -146,8 +161,55 @@
               display: true,
               text: 'Todas as emoções'
             }
-          }
+          },
         },
-    })
+    });
+    const graficoTopEmocoes = graficoBarraTopEmocoes 
+
+new Chart(graficoTopEmocoes, {
+    type: 'bar',
+
+    data: {
+            labels: ['Feliz', 'Triste', 'Raiva'],
+            datasets: [{
+            data: [5,3,2],
+            backgroundColor: ['yellow','lightblue',"red"],
+        }]
+        },
+
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: 'Top 3 emoções',
+          color: 'black'
+        }
+      },
+      scales:{
+        x:{
+            ticks: {
+                    color: 'black',
+                    font: {
+                        size: 14 
+                    }
+                }
+        },
+        y:{
+            ticks: {
+                    color: 'black',
+                    font: {
+                        size: 14 
+                    }
+                }
+        }
+      }
+    },
+})
+
+
 
 </script>
