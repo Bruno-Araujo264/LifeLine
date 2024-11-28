@@ -1,15 +1,20 @@
-Função para passar paginas FEITO
+Bonus = Adicionar navegação entre as páginas
+inserir registros no banco de dados - FEITO
+puxar registros do banco de dados
 
-+Paginas inutilizada
+dashboard css
+dashboard chart js - Feito
+dashboard api
 
-Agradecimentos na capa Em andamento
+Documentação
 
-Tela de login/cadastro FEITO
 
-estilização do caderno Em andamento
-
-mysql blob 
-
+Ideias para dash
+*Registros por dia - FEITO
+*Pizza de emoções - FEITO
+*Emoção predominante Feito
+*Emoções da semana
+*Emoção menos predominante Feito
 
 
 

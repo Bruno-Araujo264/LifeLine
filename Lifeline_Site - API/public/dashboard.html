@@ -6,11 +6,17 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="icon" href="imgs/caderno.png">
     <script src="js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <title>LifeLine</title>
 </head>
 <body>
 <audio id="paginaVirando" src="audio/page-flip1-178322.mp3"></audio>
 
+
+<div class="livroLer" onclick="window.location.href='ler.html'">
+    <h1>Ler Registros</h1>
+</div>
     <!-- Botão voltar -->
      <button id="voltar" onclick="paginaVirando.play()">
         <i class="seta-esquerda">&larr;</i>
@@ -32,10 +38,15 @@
             </div>
             <div class="verso">
                 <div id="v1" class="conteudo-verso">
-                    <h1>Bem vindo,<p id="nomeUsuario"></p></h1>
+                    <h1>Bem vindo,<span id="nomeUsuario"></span></h1>
                     <span>
-                        
+                        Aqui você encontrará uma dashboard com gráficos e indicadores
+                        que te ajudarão a ver quantidade de registros que você realizou ultimamente e a entender mais sobre suas emoções.
                     </span>
+                    <center>
+                        <b>Registros por dia</b>
+                    </center>
+                    <canvas id="graficoLinhaRegistrosDia"></canvas>
                 </div>
             </div>
          </div>
@@ -43,176 +54,100 @@
          <div id="p2" class="papel">
             <div class="frente">
                 <div id="f2" class="conteudo-frente">
-                    <div id="assunto">
-                        <b>Assunto:</b>
-                        <input type="text" id="inp_assunto" placeholder="Sobre o que você quer falar">
-                    </div>
-                    <div id="data">
-                        <b>Data:</b>
-                        <input type="date" id="inp_data" placeholder="DD/MM/AAAA">
-                    </div>
-                        
-                        <center>
-                            <span>Como você está se sentindo</span><br>
-                        </center>
-                        <div id="sentimentos">
-                            <div class="emocao">
-                                <img src="imgs/feliz.png" id="feliz" class="emoji" draggable="false" onclick="chooseFeeling('feliz')">
-                                <p>Feliz</p> 
-                            </div>
-                            <div class="emocao">
-                                <img src="imgs/triste.png" id="triste" class="emoji" draggable="false" onclick="chooseFeeling('triste')">
-                                <p>Triste</p> 
-                            </div>
-                            <div class="emocao">
-                                <img src="imgs/bravo.png" id="raiva" class="emoji" draggable="false" onclick="chooseFeeling('raiva')">
-                                <p>Raiva</p> 
-                            </div>
-                            <div class="emocao surpreso">
-                                <img src="imgs/surpreso.png" id="surpreso" class="emoji" draggable="false" onclick="chooseFeeling('surpreso')">
-                                <p>Surpreso</p> 
-                            </div>
-                            <div class="emocao">
-                                <img src="imgs/medo.png" id="medo" class="emoji" draggable="false" onclick="chooseFeeling('medo')"> 
-                                <p>Medo</p> 
-                            </div>
-                        </div>
-                        <div id="acontecimento" onclick="inp_acontecimento.focus()">
-                            <textarea id="inp_acontecimento" placeholder="Escreva o que aconteceu..."></textarea>
-                            <!-- <div class="imagem">
-                                <img src="imgs/foto.png">
-                            </div> -->
-                        </div>
-                        <button id="btn-enviar" onclick="registrar()">Adicionar registro</button>
+                    <canvas id="graficoPizzaQtdEmocoes"></canvas>
                 </div>
             </div>
             <div class="verso">
                 <div id="v2" class="conteudo-verso">
+                    <h1>Emoção mais predominante no seu livro</h1>
+                    <div class="emocaoPredominante">
+                        <img src="imgs/feliz.png" id="feliz" class="emoji" draggable="false" onclick="escolherEmocao('feliz')">
+                        <span>Felicidade</span>
+                    </div>
+                    <h1>Emoção menos predominante no seu livro</h1>
+                    <div class="emocaoMenosPredominante">
+                        <img src="imgs/bravo.png" id="raiva" class="emoji" draggable="false" onclick="escolherEmocao('raiva')">
+                        <span>Raiva</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="p3" class="papel">
+            <div class="frente">
+                <div id="f3" class="conteudo-frente">
                     
                 </div>
             </div>
-     </div>
+            <div class="verso">
+                <div id="v3" class="conteudo-verso">
+                </div>
+            </div>
+         </div>
     </div>
      <!-- Botão avançar -->
     <button id="avançar" onclick="paginaVirando.play()">
         <i class="seta-direita">&rarr;</i>
      </button>
 
-    
+     <div class="livroRegistros" onclick="window.location.href='registros.html'">
+        <h1>Escrever Registros</h1>
+    </div>
+
 </body>
 </html>
-
 <script>
-    function cadastrar() {
+    nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
+    
+    const graficoRegistros = graficoLinhaRegistrosDia
 
-//Recupere o valor da nova input pelo nome do id
-// Agora vá para o método fetch logo abaixo
-var nomeVar = inp_nome.value;
-var senhaVar = inp_senhaCadastro.value;
-var emailVar = inp_emailCadastro.value;
-var tituloVar = inp_titulo.value;
-
-// Verificando se há algum campo em branco
-if (
-  nomeVar == "" ||
-  senhaVar == "" ||
-  emailVar == "" ||
-  tituloVar == ""
-) {
-  alert("Campos em branco")
-}
-
-// Enviando o valor da nova input
-fetch("/usuarios/cadastrar", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    // crie um atributo que recebe o valor recuperado aqui
-    // Agora vá para o arquivo routes/usuario.js
-    nomeServer: nomeVar,
-    senhaServer: senhaVar,
-    emailServer: emailVar,
-    tituloServer: tituloVar
-  }),
-})
-  .then(function (resposta) {
-    console.log("resposta: ", resposta);
-
-    if (resposta.ok) {
-
-      setTimeout(() => {
-        window.location = "escrever.html";
-      }, "2000");
-
-      limparFormulario();
-    } else {
-      throw "Houve um erro ao tentar realizar o cadastro!";
-    }
-  })
-  .catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-  });
-
-return false;
-}
-
-function entrar() {
-
-        var emailVar = inp_emailLogin.value;
-        var senhaVar = inp_senhaLogin.value;
-
-        if (emailVar == "" || senhaVar == "") {
-            return false;
+    new Chart(graficoRegistros, {
+    type: 'line',
+    
+    data: {
+        labels: ['20/11','21/11','22/11','23/11','24/11','25/11','26/11'],
+        datasets: [{
+        label: 'Registros',
+        data: [2,1,5,7,3,5,0],
+        borderWidth: 1
+        }]
+        
+    },
+    options: {
+        scales: {
+        y: {
+            beginAtZero: true
         }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        window.location = "escrever.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+        },
+        
     }
+    });
 
+    const graficoEmocoes = graficoPizzaQtdEmocoes 
+
+    new Chart(graficoEmocoes, {
+        type: 'pie',
+
+        data: {
+            labels: ['Feliz', 'Triste', 'Raiva', 'Surpreso', 'Medo'],
+            datasets: [{
+            label: 'Quantidade',
+            data: [2,3,4,5,6],
+            backgroundColor: ['yellow','lightblue',"red","plum","gainsboro"]
+        }]
+        },
+
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Todas as emoções'
+            }
+          }
+        },
+    })
 
 </script>

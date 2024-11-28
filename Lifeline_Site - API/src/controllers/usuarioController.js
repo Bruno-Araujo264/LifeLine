@@ -19,10 +19,11 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                                     res.json({
-                                        id: resultadoAutenticar[0].id,
+                                        idusuario: resultadoAutenticar[0].idusuario,
                                         nome: resultadoAutenticar[0].nome,
                                         senha: resultadoAutenticar[0].senha,
                                         email: resultadoAutenticar[0].email,
+                                        titulo: resultadoAutenticar[0].titulo
                                     });
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -49,13 +50,13 @@ function cadastrar(req, res) {
     var titulo = req.body.tituloServer;
 
     // Faça as validações dos valores
-    if (titulo == undefined) {
+    if (nome == undefined) {
         res.status(400).send("Seu titulo está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (nome == undefined) {
-        res.status(400).send("Seu nome está undefined!");
     } else if (senha == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (titulo == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
 

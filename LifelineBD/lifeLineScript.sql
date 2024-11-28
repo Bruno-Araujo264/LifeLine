@@ -1,5 +1,5 @@
-create database LifeLine;
-use LifeLine;
+create database lifeLine;
+use lifeLine;
 
 
 
@@ -14,16 +14,17 @@ CREATE TABLE usuario (
   describe usuario;
 
 CREATE TABLE registros (
-  idregistro INT,
+  idregistro INT AUTO_INCREMENT,
   assunto VARCHAR(45),
   emocao VARCHAR(10),
   conteudo varchar(1000),
   dtRegistro DATE,
-  -- imagem BLOB,
   fkUsuario INT,
   CONSTRAINT pkRegistro PRIMARY KEY (idregistro,fkUsuario),
   CONSTRAINT fkRegistrosUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idusuario));
 
 select * from usuario;
+alter table registros modify column idregistro int AUTO_INCREMENT;
+select * from registros;
 
 

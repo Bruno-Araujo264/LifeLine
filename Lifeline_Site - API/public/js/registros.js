@@ -1,42 +1,42 @@
-function chooseFeeling(emotion){
+function escolherEmocao(emocao){
     var emoji = document.getElementsByClassName('emoji')
-    for(var cleanSelected = 0; cleanSelected <= 4; cleanSelected++){
-        emoji[cleanSelected].style.backgroundColor = 'transparent'
+    for(var limparSelecionado = 0; limparSelecionado <= 4; limparSelecionado++){
+        emoji[limparSelecionado].style.backgroundColor = 'transparent'
     }
 
-    if(emotion == 'feliz'){
+    if(emocao == 'feliz'){
         var cor = 'yellow'
-        emojiHighlight = document.getElementById('feliz')
-        emojiHighlight.style.backgroundColor = "yellow"
-        emojiHighlight.style.borderRadius = '100%'
+        emojiEscolhido = document.getElementById('feliz')
+        emojiEscolhido.style.backgroundColor = "yellow"
+        emojiEscolhido.style.borderRadius = '100%'
         return cor
     }
-    if(emotion == 'triste'){
+    if(emocao == 'triste'){
         var cor = 'lightblue'
-        emojiHighlight = document.getElementById('triste')
-        emojiHighlight.style.backgroundColor = "lightblue"
-        emojiHighlight.style.borderRadius = '100%'
+        emojiEscolhido = document.getElementById('triste')
+        emojiEscolhido.style.backgroundColor = "lightblue"
+        emojiEscolhido.style.borderRadius = '100%'
         return cor
     }
-    if(emotion == 'raiva'){
+    if(emocao == 'raiva'){
         var cor = 'red'
-        emojiHighlight = document.getElementById('raiva')
-        emojiHighlight.style.backgroundColor = "red"
-        emojiHighlight.style.borderRadius = '100%'
+        emojiEscolhido = document.getElementById('raiva')
+        emojiEscolhido.style.backgroundColor = "red"
+        emojiEscolhido.style.borderRadius = '100%'
         return cor
     }
-    if(emotion == 'surpreso'){
+    if(emocao == 'surpreso'){
         var cor = 'plum'
-        emojiHighlight = document.getElementById('surpreso')
-        emojiHighlight.style.backgroundColor = "plum"
-        emojiHighlight.style.borderRadius = '100%'
+        emojiEscolhido = document.getElementById('surpreso')
+        emojiEscolhido.style.backgroundColor = "plum"
+        emojiEscolhido.style.borderRadius = '100%'
         return cor
     }
-    if(emotion == 'medo'){
+    if(emocao == 'medo'){
         var cor = 'gainsboro'
-        emojiHighlight = document.getElementById('medo')
-        emojiHighlight.style.backgroundColor = "gainsboro"
-        emojiHighlight.style.borderRadius = '100%'
+        emojiEscolhido = document.getElementById('medo')
+        emojiEscolhido.style.backgroundColor = "gainsboro"
+        emojiEscolhido.style.borderRadius = '100%'
         return cor
     }
 }

@@ -12,12 +12,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Paradise";
+  font-family: "Cookie";
 }
 
 @font-face {
-  font-family: "Paradise";
-  src: url("../birds_of_paradise/Birds\ of\ Paradise\ ©\ PERSONAL\ USE\ ONLY.ttf");
+  font-family: "Cookie";
+  src: url("../cookie.regular.ttf");
   font-weight: normal;
   font-style: normal;
 }
@@ -78,7 +78,7 @@ body {
 
   input{
     font-size: 30px;
-    font-family: "Paradise" ;
+    font-family: "Cookie" ;
     outline: none;
     background-color: transparent;
     border: none;
@@ -86,7 +86,7 @@ body {
 
   input::placeholder{
     font-size: 30px;
-    font-family: "Paradise";
+    font-family: "Cookie";
     color: black;
   }
 
@@ -150,10 +150,6 @@ span{
   box-shadow: inset 10px 0px 10px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* #f2 {
-  justify-content: space-between;
-} */
-
 #v2{
   box-shadow: inset -10px 0px 10px 2px rgba(0, 0, 0, 0.25);
 }
@@ -173,7 +169,7 @@ h1 {
 
 button{
   font-size: 30px;
-  font-family: "Paradise";
+  font-family: "Cookie";
   cursor: pointer;
   background-color: transparent;
   border: none;

@@ -11,6 +11,11 @@
 <body>
 <audio id="paginaVirando" src="audio/page-flip1-178322.mp3"></audio>
 
+
+<div class="livroDashboard" onclick="window.location.href='dashboard.html'">
+    <h1>Ver estatisticas</h1>
+</div>
+
     <!-- Botão voltar -->
      <button id="voltar" onclick="paginaVirando.play()">
         <i class="seta-esquerda">&larr;</i>
@@ -32,13 +37,15 @@
             </div>
             <div class="verso">
                 <div id="v1" class="conteudo-verso">
-                    <h1>Bem vindo,<p id="nomeUsuario"></p></h1>
+                    <h1>Bem vindo,<span id="nomeUsuario"></span></h1>
                     <span>
                         Agora chegou a hora de criar as páginas do seu livro,
                         seja honesto consigo mesmo, fale o que você está realmente sentindo,
                         esse é um ambiente seguro e totalmente privado,
                         escreva com carinho.
                     </span>
+                    <button onclick="window.location.href='ler.html'">Ler Registros</button>
+                    <button onclick="window.location.href='dashboard.html'">Ver Estatísticas</button>
                 </div>
             </div>
          </div>
@@ -60,31 +67,28 @@
                         </center>
                         <div id="sentimentos">
                             <div class="emocao">
-                                <img src="imgs/feliz.png" id="feliz" class="emoji" draggable="false" onclick="chooseFeeling('feliz')">
+                                <img src="imgs/feliz.png" id="feliz" class="emoji" draggable="false" onclick="escolherEmocao('feliz')">
                                 <p>Feliz</p> 
                             </div>
                             <div class="emocao">
-                                <img src="imgs/triste.png" id="triste" class="emoji" draggable="false" onclick="chooseFeeling('triste')">
+                                <img src="imgs/triste.png" id="triste" class="emoji" draggable="false" onclick="escolherEmocao('triste')">
                                 <p>Triste</p> 
                             </div>
                             <div class="emocao">
-                                <img src="imgs/bravo.png" id="raiva" class="emoji" draggable="false" onclick="chooseFeeling('raiva')">
+                                <img src="imgs/bravo.png" id="raiva" class="emoji" draggable="false" onclick="escolherEmocao('raiva')">
                                 <p>Raiva</p> 
                             </div>
                             <div class="emocao surpreso">
-                                <img src="imgs/surpreso.png" id="surpreso" class="emoji" draggable="false" onclick="chooseFeeling('surpreso')">
+                                <img src="imgs/surpreso.png" id="surpreso" class="emoji" draggable="false" onclick="escolherEmocao('surpreso')">
                                 <p>Surpreso</p> 
                             </div>
                             <div class="emocao">
-                                <img src="imgs/medo.png" id="medo" class="emoji" draggable="false" onclick="chooseFeeling('medo')"> 
+                                <img src="imgs/medo.png" id="medo" class="emoji" draggable="false" onclick="escolherEmocao('medo')"> 
                                 <p>Medo</p> 
                             </div>
                         </div>
-                        <div id="acontecimento" onclick="inp_acontecimento.focus()">
-                            <textarea id="inp_acontecimento" placeholder="Escreva o que aconteceu..."></textarea>
-                            <!-- <div class="imagem">
-                                <img src="imgs/foto.png">
-                            </div> -->
+                        <div id="conteudo">
+                            <textarea id="inp_conteudo" placeholder="Escreva o que aconteceu..."></textarea>
                         </div>
                         <button id="btn-enviar" onclick="registrar()">Adicionar registro</button>
                 </div>
@@ -101,54 +105,70 @@
         <i class="seta-direita">&rarr;</i>
      </button>
 
-    
+     <div id="livroLer" class="livroLer" onclick="window.location.href='ler.html'">
+        <h1>Ler Registros</h1>
+    </div>
 </body>
 </html>
 
 <script>
-    function cadastrar() {
+    nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
+
+    function registrar() {
 
 //Recupere o valor da nova input pelo nome do id
 // Agora vá para o método fetch logo abaixo
-var nomeVar = inp_nome.value;
-var senhaVar = inp_senhaCadastro.value;
-var emailVar = inp_emailCadastro.value;
-var tituloVar = inp_titulo.value;
+var assuntoVar = inp_assunto.value;
+var emojiVar = verificarEmocao()
+var conteudoVar = inp_conteudo.value;
+var dataVar = inp_data.value;
+var fkUsuarioVar = sessionStorage.ID_USUARIO
+
+function verificarEmocao(){
+
+    emojiVar = document.getElementsByClassName('emoji')
+    
+    for ( var posicaoEmocao = 0 ; posicaoEmocao<=4;posicaoEmocao++) {
+            if (emojiVar[posicaoEmocao].style.backgroundColor != 'transparent'){
+                emojiVar = emojiVar[posicaoEmocao].id
+                break
+            }
+    }
+    return emojiVar
+}
 
 // Verificando se há algum campo em branco
 if (
-  nomeVar == "" ||
-  senhaVar == "" ||
-  emailVar == "" ||
-  tituloVar == ""
+  assuntoVar == "" ||
+  emojiVar == "" ||
+  conteudoVar == "" ||
+  dataVar == ""
 ) {
   alert("Campos em branco")
 }
 
 // Enviando o valor da nova input
-fetch("/usuarios/cadastrar", {
+fetch("/registros/registrar", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
     // crie um atributo que recebe o valor recuperado aqui
-    // Agora vá para o arquivo routes/usuario.js
-    nomeServer: nomeVar,
-    senhaServer: senhaVar,
-    emailServer: emailVar,
-    tituloServer: tituloVar
+    // Agora vá para o arquivo routes/registros.js
+    assuntoServer: assuntoVar,
+    emojiServer: emojiVar,
+    conteudoServer: conteudoVar,
+    dataServer: dataVar,
+    fkUsuarioServer: fkUsuarioVar
+
   }),
 })
   .then(function (resposta) {
     console.log("resposta: ", resposta);
 
     if (resposta.ok) {
-
-      setTimeout(() => {
-        window.location = "escrever.html";
-      }, "2000");
-
+      alert("Registro realizado com sucesso")
       limparFormulario();
     } else {
       throw "Houve um erro ao tentar realizar o cadastro!";
@@ -161,61 +181,14 @@ fetch("/usuarios/cadastrar", {
 return false;
 }
 
-function entrar() {
-
-        var emailVar = inp_emailLogin.value;
-        var senhaVar = inp_senhaLogin.value;
-
-        if (emailVar == "" || senhaVar == "") {
-            return false;
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        window.location = "escrever.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+function limparFormulario() {
+    inp_assunto.value = ""
+    inp_conteudo.value = ""
+    inp_data.value = ""
+    var emoji = document.getElementsByClassName('emoji')
+    for(var limparSelecionado = 0; limparSelecionado <= 4; limparSelecionado++){
+        emoji[limparSelecionado].style.backgroundColor = 'transparent'
     }
-
+}
 
 </script>

@@ -12,12 +12,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Paradise";
+  font-family: "Cookie";
 }
 
 @font-face {
-  font-family: "Paradise";
-  src: url("../birds_of_paradise/Birds\ of\ Paradise\ ©\ PERSONAL\ USE\ ONLY.ttf");
+  font-family: "Cookie";
+  src: url("../cookie.regular.ttf");
   font-weight: normal;
   font-style: normal;
 }
@@ -78,7 +78,7 @@ body {
 
   input{
     font-size: 30px;
-    font-family: "Paradise" ;
+    font-family: "Cookie" ;
     outline: none;
     background-color: transparent;
     border: none;
@@ -86,7 +86,7 @@ body {
 
   input::placeholder{
     font-size: 30px;
-    font-family: "Paradise";
+    font-family: "Cookie";
     color: black;
   }
 
@@ -162,7 +162,57 @@ h1 {
   padding-bottom: 10px;
 }
 
+.livroRegistros{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: -300px;
+  width: 450px;
+  height: 600px;
+  transform: rotate(45deg);
+  background-image: url("../imgs/41904.jpg");
+  background-size: cover;
+  transition: left 0.5s;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5),0px 0px 20px 10px rgba(0, 0, 0, 0.5);
 
+  h1{
+    text-shadow: -5px 5px 15px rgba(0, 0, 0, 0.4), 5px -5px 15px rgba(255, 255, 255, 0.4);
+    font-size: 50px;
+  }
+}
+
+.livroRegistros:hover {
+  cursor: pointer;
+  left: -50px;
+}
+
+.livroDashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: -300px;
+  width: 450px;
+  height: 600px;
+  transform: rotate(-45deg);
+  background-image: url("../imgs/41904.jpg");
+  background-size: cover;
+  transition: right 0.5s;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5),0px 0px 20px 10px rgba(0, 0, 0, 0.5);
+
+  h1{
+    text-shadow: -5px 5px 15px rgba(0, 0, 0, 0.4), 5px -5px 15px rgba(255, 255, 255, 0.4);
+    font-size: 50px;
+  }
+}
+
+.livroDashboard:hover {
+  cursor: pointer;
+  right: -50px;
+}
 
 /* Efeito página virada */
 
@@ -173,7 +223,7 @@ h1 {
 
 button{
   font-size: 30px;
-  font-family: "Paradise";
+  font-family: "Cookie";
   cursor: pointer;
   background-color: transparent;
   border: none;
