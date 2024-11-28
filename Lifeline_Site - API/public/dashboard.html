@@ -113,14 +113,26 @@
         
     },
     options: {
-        
+        plugins:{
+            legend:{
+                labels:{
+                    color: 'black',
+                    font:{
+                        size: 20
+                    }
+                }
+            }
+        },
+        label:{
+            color: 'black'
+        },
         scales: {
         y: {
             beginAtZero: true,
             ticks: {
                     color: 'black',
                     font: {
-                        size: 14 
+                        size: 18 
                     }
                 }
         },
@@ -128,7 +140,7 @@
             ticks: {
                     color: 'black',
                     font: {
-                        size: 14 
+                        size: 18
                     }
                 }
         }
@@ -156,10 +168,20 @@
           plugins: {
             legend: {
               position: 'top',
+              labels:{
+                color:'black',
+                font:{
+                    size:16
+                }
+              }
             },
             title: {
               display: true,
-              text: 'Todas as emoções'
+              text: 'Todas as emoções',
+              color: 'black',
+              font:{
+                size:20
+              }
             }
           },
         },
@@ -186,7 +208,10 @@ new Chart(graficoTopEmocoes, {
         title: {
           display: true,
           text: 'Top 3 emoções',
-          color: 'black'
+          color: 'black',
+          font:{
+            size:20
+          }
         }
       },
       scales:{
@@ -194,7 +219,7 @@ new Chart(graficoTopEmocoes, {
             ticks: {
                     color: 'black',
                     font: {
-                        size: 14 
+                        size: 17 
                     }
                 }
         },
@@ -202,7 +227,7 @@ new Chart(graficoTopEmocoes, {
             ticks: {
                     color: 'black',
                     font: {
-                        size: 14 
+                        size: 17
                     }
                 }
         }
