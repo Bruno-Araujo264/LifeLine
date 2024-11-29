@@ -24,7 +24,22 @@ CREATE TABLE registros (
   CONSTRAINT fkRegistrosUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idusuario));
 
 select * from usuario;
-alter table registros modify column idregistro int AUTO_INCREMENT;
-select * from registros;
+
+select * from registros; 
+
+select count(dtRegistro) from registros where dtRegistro = '2024-11-24';
+
+select distinct dtregistro from registros order by dtRegistro desc limit 7;
+
+select count(dtregistro) from registros;
+
+select count(emocao) from registros where emocao = "feliz" and dtRegistro > '2024-11-24';
+select count(emocao) from registros where emocao = "triste" and dtRegistro > '2024-11-24';
+select count(emocao) from registros where emocao = "raiva" and dtRegistro > '2024-11-24';
+select count(emocao) from registros where emocao = "surpreso" and dtRegistro > '2024-11-24';
+select count(emocao) from registros where emocao = "medo" and dtRegistro > '2024-11-24';
+
+
+
 
 

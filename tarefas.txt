@@ -1,8 +1,8 @@
-Bonus = Adicionar navegação entre as páginas
+Bonus = Adicionar navegação entre as páginas Feito
 inserir registros no banco de dados - FEITO
 puxar registros do banco de dados
 
-dashboard css
+dashboard css -- Feito
 dashboard chart js - Feito
 dashboard api
 
@@ -13,8 +13,26 @@ Ideias para dash
 *Registros por dia - FEITO
 *Pizza de emoções - FEITO
 *Emoção predominante Feito
-*Emoções da semana
+*Emoções da semana Feito
 *Emoção menos predominante Feito
+Qtd total de registros - Feito
+
+Selects para dash -
+
+Qtd de registros de cada dia nos últimos 7 dias
+
+Qtd de cada emoção no total - count(todas as emoções)
+
+Top 3 emoções - count(todas as emoções) order by emoção desc limit 3
+
+Emoção mais predominante - count(todas as emoções) 
+
+Emoção menos predominante
+
+
+utilizando a api Express do node.js, eu conecto meu site web com o banco de dados mysql, utilizando o comando select no banco de dados, os dados mostrados poderiam ser tranformados em um vetor dentro do javascript
+
+
 
 
 

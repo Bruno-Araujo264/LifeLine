@@ -63,7 +63,7 @@
                     <input type="text" id="inp_nome" placeholder="Escreva o seu nome"><br>
                     <input type="text" id="inp_emailCadastro" placeholder="Escreva aqui o seu email"><br>
                     <input type="password" id="inp_senhaCadastro" placeholder="Escreva aqui a sua senha"><br>
-                    <button onclick="cadastrar()">Cadastrar</button>
+                    <button id="btn_cadastrar" onclick="cadastrar()">Cadastrar</button>
                 </div>
             </div>
          </div>
@@ -143,7 +143,9 @@ fetch("/usuarios/cadastrar", {
                     sessionStorage.ID_USUARIO = json.idusuario;
 
       setTimeout(() => {
-        window.location = "registros.html";
+        
+        alert("Cadastro Realizado\nAgora faça seu login");
+        
       }, "1000");
 
     });

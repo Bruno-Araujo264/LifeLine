@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const btnVoltar = document.querySelector('#voltar');
+    const btnCadastrar = document.querySelector('#btn_cadastrar');
     const btnAvancar = document.querySelector('#avançar');
     const livro = document.querySelector("#livro");
 
@@ -9,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     btnAvancar.addEventListener("click", avancarPagina);
     btnVoltar.addEventListener("click", voltarPagina);
+    btnCadastrar.addEventListener("click", voltarPagina);
 
     let paginaAtual = 1;
     const numeroDePaginas = 3;
