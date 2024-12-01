@@ -105,11 +105,6 @@ body {
 }
 
 
-
-span{
-  font-size: 30px;
-}
-
 /* Ordem das páginas */
 #p1 {
   z-index: 3;
@@ -240,6 +235,66 @@ i{
   color: black;
 }
 
+#assunto,#data input::placeholder {
+  font-size: 15px;
+  color: black;
+}
+
+
+
+span{
+  margin: 1%;
+font-size: 30px;
+}
+
+#sentimentos {
+  margin-top: 3%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 15%;
+}
+
+.emocao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+
+  p{
+      font-size: 20px;
+  }
+
+  img {
+      width: 50px;
+      height: 50px;
+  }
+  #feliz:hover{
+      border-radius: 100%;
+      cursor: pointer;
+      transform: scale(1.5);
+  }
+  #triste:hover{
+      border-radius: 100%;
+      cursor: pointer;
+      transform: scale(1.5);
+  }
+  #raiva:hover{
+      border-radius: 100%;
+      cursor: pointer;
+      transform: scale(1.5);
+  }
+  #surpreso:hover{
+      border-radius: 100%;
+      cursor: pointer;
+      transform: scale(1.5);
+  }
+  #medo:hover{
+      border-radius: 100%;
+      cursor: pointer;
+      transform: scale(1.5);
+  }
+}
 
 
 footer {

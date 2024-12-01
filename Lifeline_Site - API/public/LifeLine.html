@@ -169,7 +169,7 @@ function entrar() {
         var senhaVar = inp_senhaLogin.value;
 
         if (emailVar == "" || senhaVar == "") {
-            return false;
+            return alert("Campos precisam ser preenchidos");
         }
 
         console.log("FORM LOGIN: ", emailVar);

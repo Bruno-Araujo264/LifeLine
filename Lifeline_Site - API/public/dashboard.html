@@ -44,7 +44,7 @@
                         que te ajudarão a ver quantidade de registros que você realizou ultimamente e a entender mais sobre suas emoções.
                     </span>
                     <center>
-                        <b>Registros por dia</b>
+                        <b>Resumo dos últimos 7 dias</b>
                     </center>
                     <canvas id="graficoLinhaRegistrosDia"></canvas>
                 </div>
@@ -60,15 +60,12 @@
             <div class="verso">
                 <div id="v2" class="conteudo-verso">
                     <h1>Emoção mais predominante no seu livro</h1>
-                    <div class="emocaoPredominante">
-                        <img src="imgs/feliz.png" id="feliz" class="emoji" draggable="false" onclick="escolherEmocao('feliz')">
-                        <span>Felicidade</span>
+                    <div id="emocaoPredominante">
                     </div>
                     <h1>Emoção menos predominante no seu livro</h1>
-                    <div class="emocaoMenosPredominante">
-                        <img src="imgs/bravo.png" id="raiva" class="emoji" draggable="false" onclick="escolherEmocao('raiva')">
-                        <span>Raiva</span>
+                    <div id="emocaoMenosPredominante">
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -97,18 +94,115 @@
 </html>
 <script>
     nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
-    dias = ['20/11','21/11','22/11','23/11','24/11','25/11','26/11']
-    
-    const graficoRegistros = graficoLinhaRegistrosDia
 
+    window.onload = function chamarFuncoes(){
+        buscarDias()
+        buscarEmocoes()
+        carregarKpis()
+    }
+
+    var dias = []
+    var emocoes = []
+    var kpiEmocoes = []
+
+    function buscarEmocoes() {
+
+    fetch(`/dashboard/contarEmocoes?idUsuario=${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }})
+            .then(resposta => {
+
+            if (resposta.ok) {
+                console.log("teste");
+                return resposta.json();
+                } else {
+                console.log("Houve um erro!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).then(dados => {
+            emocoes.push(dados)
+            carregarGraficoPizza()
+        })
+
+}
+
+function buscarDias() {
+
+fetch(`/dashboard/contarUltimaSemana?idUsuario=${sessionStorage.ID_USUARIO}`, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }})
+        .then(resposta => {
+
+        if (resposta.ok) {
+            console.log("teste");
+            return resposta.json();
+            } else {
+            console.log("Houve um erro!");
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).then(dados => {
+        dias.push(dados)
+        carregarGraficoLinha()
+    })
+
+}
+
+function carregarKpis(){
+    fetch(`/dashboard/ordenarEmocoes?idUsuario=${sessionStorage.ID_USUARIO}`, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }})
+        .then(resposta => {
+
+        if (resposta.ok) {
+            console.log("teste");
+            return resposta.json();
+            } else {
+            console.log("Houve um erro!");
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).then(dados => {
+        kpiEmocoes.push(dados)
+        montarKpis()
+        carregarGraficoBarra()
+    })
+}
+    
+    function carregarGraficoLinha() {
+        const graficoRegistros = graficoLinhaRegistrosDia
+    
+        var labelsLinha = []
+        var dataLinha = []
+
+
+        for (var i=0;i<dias[0].length;i++){
+            labelsLinha.push(dias[0][i].dtregistro)
+            dataLinha.push(dias[0][i].qtdRegistros)
+        }
+        labelsLinha.reverse()
+        dataLinha.reverse()
     new Chart(graficoRegistros, {
     type: 'line',
     
     data: {
-        labels: [dias[0],dias[1],dias[2],dias[3],dias[4],dias[5],dias[6],],
+        labels: labelsLinha,
         datasets: [{
         label: 'Registros',
-        data: [2,1,5,7,3,5,0],
+        data: dataLinha,
         borderWidth: 1
         }]
         
@@ -141,7 +235,7 @@
             ticks: {
                     color: 'black',
                     font: {
-                        size: 18
+                        size: 10
                     }
                 }
         }
@@ -150,17 +244,48 @@
     }
     });
 
-    const graficoEmocoes = graficoPizzaQtdEmocoes 
+    
+    }
+    
+    function carregarGraficoPizza() {
+        const graficoEmocoes = graficoPizzaQtdEmocoes 
+
+        var cores = []
+        var labelsPizza = []
+        var dataPizza = []
+
+        for(var i = 0; i<emocoes[0].length;i++){
+            if(emocoes[0][i].emocao == "feliz"){
+                 cores.push("yellow")
+            }
+            if(emocoes[0][i].emocao == "triste"){
+                 cores.push("lightblue")
+            }
+            if(emocoes[0][i].emocao == "raiva"){
+                 cores.push("red")
+            }
+            if(emocoes[0][i].emocao == "surpreso"){
+                 cores.push("plum")
+            }
+            if(emocoes[0][i].emocao == "medo"){
+                 cores.push("gainsboro")
+            }
+        }
+
+        for (var i=0;i<emocoes[0].length;i++){
+            labelsPizza.push(emocoes[0][i].emocao)
+            dataPizza.push(emocoes[0][i].qtdEmocoes)
+        }
 
     new Chart(graficoEmocoes, {
         type: 'pie',
 
         data: {
-            labels: ['Feliz', 'Triste', 'Raiva', 'Surpreso', 'Medo'],
+            labels: labelsPizza,
             datasets: [{
             label: 'Quantidade',
-            data: [2,3,4,5,6],
-            backgroundColor: ['yellow','lightblue',"red","plum","gainsboro"]
+            data: dataPizza,
+            backgroundColor: cores
         }]
         },
 
@@ -187,16 +312,51 @@
           },
         },
     });
-    const graficoTopEmocoes = graficoBarraTopEmocoes 
+    }
+
+    function carregarGraficoBarra(){
+        const graficoTopEmocoes = graficoBarraTopEmocoes 
+        var cores = []
+
+        var labelsBarra = []
+        var dataBarra = []
+        var limite = 3
+        
+        if(emocoes[0].length <3) {
+            limite = emocoes[0].length
+        }
+
+        for (var i=0;i<limite;i++){
+            labelsBarra.push(emocoes[0][i].emocao)
+            dataBarra.push(emocoes[0][i].qtdEmocoes)
+        }
+
+        for(var i = 0; i<kpiEmocoes[0].length;i++){
+            if(kpiEmocoes[0][i].emocao == "feliz"){
+                 cores.push("yellow")
+            }
+            if(kpiEmocoes[0][i].emocao == "triste"){
+                 cores.push("lightblue")
+            }
+            if(kpiEmocoes[0][i].emocao == "raiva"){
+                 cores.push("red")
+            }
+            if(kpiEmocoes[0][i].emocao == "surpreso"){
+                 cores.push("plum")
+            }
+            if(kpiEmocoes[0][i].emocao == "medo"){
+                 cores.push("gainsboro")
+            }
+        }
 
 new Chart(graficoTopEmocoes, {
     type: 'bar',
 
     data: {
-            labels: ['Feliz', 'Triste', 'Raiva'],
+            labels: labelsBarra,
             datasets: [{
-            data: [5,3,2],
-            backgroundColor: ['yellow','lightblue',"red"],
+            data: dataBarra,
+            backgroundColor: cores,
         }]
         },
 
@@ -235,7 +395,32 @@ new Chart(graficoTopEmocoes, {
       }
     },
 })
+}
 
 
+    function montarKpis(){
+        var emocaoPredominanteVar = ""
+        var emocaoMenosPredominanteVar = ""
+        var cores = []
 
+        var predominante = document.getElementById("emocaoPredominante")
+        var NaoPredominante = document.getElementById("emocaoMenosPredominante")
+
+        emocaoPredominanteVar = kpiEmocoes[0][0].emocao
+        emocaoMenosPredominanteVar = kpiEmocoes[0][kpiEmocoes[0].length - 1].emocao
+
+        if(kpiEmocoes[0][0].emocao == 'raiva') {
+             emocaoPredominanteVar = "bravo"
+        }
+        if(kpiEmocoes[0][kpiEmocoes[0].length - 1].emocao == 'raiva') {
+             emocaoMenosPredominanteVar = "bravo"
+        }
+
+        predominante.innerHTML = `<img src="imgs/${emocaoPredominanteVar}.png">
+                                        <span>${emocaoPredominanteVar}</span>`
+
+        NaoPredominante.innerHTML = `<img src="imgs/${emocaoMenosPredominanteVar}.png">
+                                        <span>${emocaoMenosPredominanteVar}</span>`
+
+    }
 </script>
