@@ -1,81 +1,81 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const btnVoltar = document.querySelector('#voltar');
     const btnAvancar = document.querySelector('#avançar');
     const livro = document.querySelector("#livro");
 
-    const papel1 = document.getElementById("p1");
-    const papel2 = document.getElementById("p2");
-    const papel3 = document.getElementById("p3");
+    let paginas = []; // Armazena todas as páginas criadas dinamicamente.
+    let paginaAtual = 0; // Página inicial.
 
+    // Evento para avançar a página.
     btnAvancar.addEventListener("click", avancarPagina);
+
+    // Evento para voltar a página.
     btnVoltar.addEventListener("click", voltarPagina);
 
-    let paginaAtual = 1;
-    const numeroDePaginas = 3;
-    const ultimaPagina = numeroDePaginas + 1;
-
-    function abrirLivro() {
-        livro.style.transform = "translateX(50%)"
-        btnVoltar.style.transform = "translateX(-240px)"
-        btnAvancar.style.transform = "translateX(240px)"
+    function configurarPaginas() {
+        paginas = document.querySelectorAll(".papel"); // Seleciona todas as páginas.
+        paginas.forEach((pagina, index) => {
+            pagina.style.zIndex = paginas.length - index; // Define zIndex de forma decrescente.
+        });
     }
 
-    function fecharLivro(estaNoComeco) {
-        if(estaNoComeco){
-            livro.style.transform = "translateX(0%)"
-        } else {
-            livro.style.transform = "translateX(100%)"
-        }
-        btnVoltar.style.transform = "translateX(0px)"
-        btnAvancar.style.transform = "translateX(0px)"
+    function abrirLivro() {
+        livro.style.transform = "translateX(50%)";
+        btnVoltar.style.transform = "translateX(-240px)";
+        btnAvancar.style.transform = "translateX(240px)";
+    }
+
+    function fecharLivro() {
+        livro.style.transform = "translateX(100%)";
+        btnVoltar.style.transform = "translateX(0px)";
+        btnAvancar.style.transform = "translateX(0px)";
     }
 
     function avancarPagina() {
-        if (paginaAtual < ultimaPagina){
-            for (pagina = paginaAtual;pagina < ultimaPagina; pagina++){
-                if (pagina == 1){
-                    abrirLivro()
-                    papel1.classList.add("virada")
-                    setTimeout(() => {
-                        papel1.style.zIndex = 1
-                      }, 1000);
-                    break
+        if (paginaAtual < paginas.length) {
+            paginas[paginaAtual].classList.add("virada");
+
+            // Ajuste do zIndex após virar a página
+            setTimeout(() => {
+                
+                paginas[paginaAtual].style.zIndex = paginas.length - 1;
+                
+                paginaAtual++;
+                
+                if (paginaAtual === paginas.length) { // Fechar o livro apenas na última página.
+                    fecharLivro();
+                } else if (paginaAtual === 1) { // Abrir o livro ao sair da capa.
+                    abrirLivro();
                 }
-                if (pagina == 2) {
-                    papel2.classList.add("virada")
-                    papel2.style.zIndex = 2
-                    break
-                } else {
-                    papel3.classList.add("virada")
-                    papel3.style.zIndex = 3
-                    fecharLivro(false)
-                    break
-                }
-            } paginaAtual++
+            }, 500);
         }
     }
 
     function voltarPagina() {
-        if (paginaAtual > 1) {
-            for (pagina = paginaAtual;pagina <= ultimaPagina; pagina++){
-                if (pagina == 2){
-                    fecharLivro(true)
-                    papel1.classList.remove("virada");
-                    papel1.style.zIndex = 3
-                    break;
+        if (paginaAtual > 0) {
+            paginaAtual--;
+
+            paginas[paginaAtual].classList.remove("virada");
+            setTimeout(() => {
+                
+                // Reajustar o zIndex ao voltar a página
+                paginas[paginaAtual].style.zIndex = paginas.length - paginaAtual;
+                
+                if (paginaAtual === paginas.length - 1) { // Reabrir o livro ao sair da última página.
+                    abrirLivro();
                 }
-                if (pagina == 3) {
-                    papel2.classList.remove("virada");
-                    papel2.style.zIndex = 2
-                        break;
-                } else {
-                    abrirLivro()
-                    papel3.classList.remove("virada");
-                    papel3.style.zIndex = 1
-                    break;
+                
+                if (paginaAtual === 0) { // Fechar o livro ao voltar para a capa.
+                    livro.style.transform = "translateX(0%)";
+                    btnVoltar.style.transform = "translateX(0px)";
+                    btnAvancar.style.transform = "translateX(0px)";
                 }
-            }
-            paginaAtual--
+            }, 900);
         }
     }
+
+    // Executar após a criação das páginas dinâmicas.
+    window.adicionarZindex = function () {
+        configurarPaginas(); // Atualiza a lista de páginas e zIndexes após a criação dinâmica.
+    };
 });

@@ -322,13 +322,13 @@ function carregarKpis(){
         var dataBarra = []
         var limite = 3
         
-        if(emocoes[0].length <3) {
-            limite = emocoes[0].length
+        if(kpiEmocoes[0].length <3) {
+            limite = kpiEmocoes[0].length
         }
 
         for (var i=0;i<limite;i++){
-            labelsBarra.push(emocoes[0][i].emocao)
-            dataBarra.push(emocoes[0][i].qtdEmocoes)
+            labelsBarra.push(kpiEmocoes[0][i].emocao)
+            dataBarra.push(kpiEmocoes[0][i].qtdEmocoes)
         }
 
         for(var i = 0; i<kpiEmocoes[0].length;i++){
@@ -409,12 +409,7 @@ new Chart(graficoTopEmocoes, {
         emocaoPredominanteVar = kpiEmocoes[0][0].emocao
         emocaoMenosPredominanteVar = kpiEmocoes[0][kpiEmocoes[0].length - 1].emocao
 
-        if(kpiEmocoes[0][0].emocao == 'raiva') {
-             emocaoPredominanteVar = "bravo"
-        }
-        if(kpiEmocoes[0][kpiEmocoes[0].length - 1].emocao == 'raiva') {
-             emocaoMenosPredominanteVar = "bravo"
-        }
+        
 
         predominante.innerHTML = `<img src="imgs/${emocaoPredominanteVar}.png">
                                         <span>${emocaoPredominanteVar}</span>`

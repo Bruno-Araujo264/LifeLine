@@ -34,70 +34,8 @@
                 </div>
             </div>
          </div>
-         <!-- pagina3/4 -->
-         <div id="p2" class="papel">
-            <div class="frente">
-                <div id="f2" class="conteudo-frente">
-                    <div id="assunto">
-                        <b>Assunto:</b>
-                        <input type="text" id="inp_assunto" placeholder="Sobre o que você quer falar">
-                    </div>
-                    <div id="data">
-                        <b>Data:</b>
-                        <input type="date" id="inp_data" placeholder="DD/MM/AAAA">
-                    </div>
-                    <img style="background-color: yellow;" src="">
-                        
-                        <center>
-                            <span>Como você está se sentindo</span><br>
-                        </center>
-                        <div id="sentimentos">
-                            <div class="emocao">
-                                <img src="imgs/feliz.png" id="feliz" class="emoji" draggable="false" onclick="escolherEmocao('feliz')">
-                                <p>Feliz</p> 
-                            </div>
-                            <div class="emocao">
-                                <img src="imgs/triste.png" id="triste" class="emoji" draggable="false" onclick="escolherEmocao('triste')">
-                                <p>Triste</p> 
-                            </div>
-                            <div class="emocao">
-                                <img src="imgs/bravo.png" id="raiva" class="emoji" draggable="false" onclick="escolherEmocao('raiva')">
-                                <p>Raiva</p> 
-                            </div>
-                            <div class="emocao surpreso">
-                                <img src="imgs/surpreso.png" id="surpreso" class="emoji" draggable="false" onclick="escolherEmocao('surpreso')">
-                                <p>Surpreso</p> 
-                            </div>
-                            <div class="emocao">
-                                <img src="imgs/medo.png" id="medo" class="emoji" draggable="false" onclick="escolherEmocao('medo')"> 
-                                <p>Medo</p> 
-                            </div>
-                        </div>
-                        <div id="conteudo">
-                            <textarea id="inp_conteudo" placeholder="Escreva o que aconteceu..."></textarea>
-                        </div>
-                        <button id="btn-enviar" onclick="registrar()">Adicionar registro</button>
-                </div>
-            </div>
-            <div class="verso">
-                <div id="v2" class="conteudo-verso">
-                    
-                </div>
-            </div>
-         </div>
-         <!-- pagina5/6 -->
-         <div id="p3" class="papel">
-            <div class="frente">
-                <div id="f3" class="conteudo-frente">
-                    
-                </div>
-            </div>
-            <div class="verso">
-                <div id="v3" class="conteudo-verso">
-                </div>
-            </div>
-         </div>
      </div>
+     
 
 
     <!-- Botão avançar -->
@@ -112,4 +50,121 @@
 </html>
 <script>
     tituloLivro.innerHTML = sessionStorage.TITULO
+
+    var counteudoPaginas = []
+
+    window.onload = function buscarRegistros() {
+
+fetch(`/ler/coletarRegistros?idUsuario=${sessionStorage.ID_USUARIO}`, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }})
+        .then(resposta => {
+
+        if (resposta.ok) {
+            console.log("teste");
+            return resposta.json();
+            } else {
+            console.log("Houve um erro!");
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).then(dados => {
+        counteudoPaginas.push(dados)
+        criarPaginas()
+    })
+
+}
+
+var numeroPagina = 2
+
+    function criarPaginas() {
+        var livroDiv = document.getElementById("livro")
+        for(var i=0; i<=counteudoPaginas[0].length;i +=2){
+            livroDiv.innerHTML += `<div id="p${numeroPagina}" class="papel">
+                                        <div class="frente">
+                                            <div id="f${numeroPagina}" class="conteudo-frente">
+                                                <h1 id="tituloLivro"></h1>
+                                            </div>
+                                        </div>
+                                        <div class="verso">
+                                            <div id="v${numeroPagina}" class="conteudo-verso">
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                    `
+            numeroPagina++
+        }
+        adicionarConteudo()
+    }
+
+    function adicionarConteudo() {
+        var paginaAtual = 2
+        for(var i=0;i<counteudoPaginas[0].length;i+=2) {
+            var frenteDiv = document.getElementById(`f${paginaAtual}`)
+            var versoDiv = document.getElementById(`v${paginaAtual}`)
+            frenteDiv.innerHTML = `<div id="assunto">
+                        <b>Assunto:</b>
+                        <h2>${counteudoPaginas[0][i].assunto}</h2>
+                    </div>
+                    <div id="data">
+                        <b>Data:</b>
+                        <h2>${counteudoPaginas[0][i].dtRegistro}</h2>
+                    </div>
+                    <div id="sentimento">
+                                <b>Como você estava se sentindo:</b>
+                                <img src="imgs/${counteudoPaginas[0][i].emocao}.png">
+                                <b>${counteudoPaginas[0][i].emocao}</b> 
+                        </div>
+                        <div id="conteudo">
+                            ${counteudoPaginas[0][i].conteudo}
+                        </div>`
+
+            versoDiv.innerHTML = `
+                    <div id="assunto">
+                        <b>Assunto:</b>
+                        <h2>${counteudoPaginas[0][i+1].assunto}</h2>
+                    </div>
+                    <div id="data">
+                        <b>Data:</b>
+                        <h2>${counteudoPaginas[0][i+1].dtRegistro}</h2>
+                    </div>
+                    <div id="sentimento">
+                                <b>Como você estava se sentindo:</b>
+                                <img src="imgs/${counteudoPaginas[0][i+1].emocao}.png">
+                                <b>${counteudoPaginas[0][i+1].emocao}</b> 
+                        </div>
+                    <div id="conteudo">
+                        ${counteudoPaginas[0][i+1].conteudo}
+                    </div>`
+                    paginaAtual++
+        }
+        
+        adicionarZindex()
+        ultimapagina()
+        }
+    
+    function adicionarZindex() {
+        var zIndex = counteudoPaginas[0].length - 1
+        var capa = document.getElementById("p1")
+            capa.style.zIndex = zIndex
+            zIndex--
+        var paginaAtual = 2
+        for(var i=0;i<=counteudoPaginas[0].length;i+=2){
+            var paginaIndex = document.getElementById(`p${paginaAtual}`)
+            paginaIndex.style.zIndex = zIndex
+            zIndex--
+            paginaAtual++
+        }
+    }
+    function ultimapagina() {
+        var ultimoVerso = document.getElementById(`v${numeroPagina -1}`)
+        ultimoVerso.style.backgroundImage = "url('../imgs/capaInvertida.jpg')"
+        ultimoVerso.style.backgroundPosition = "center"
+        ultimoVerso.style.backgroundSize = "cover"
+    }
 </script>

@@ -35,4 +35,12 @@ SELECT
     *
 FROM
     registros;
+    
+    SELECT 
+    assunto, emocao, conteudo, dtRegistro
+FROM
+    registros
+WHERE
+    fkUsuario = 1
+ORDER BY dtRegistro;
 
