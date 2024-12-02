@@ -30,7 +30,8 @@
             </div>
             <div class="verso">
                 <div id="v1" class="conteudo-verso">
-                   
+                    <span>Aqui estão seus registros, você pode lembrar de todos os seus momentos</span>
+                    <button onclick="window.location.href='lifeline.html'">Sair</button>
                 </div>
             </div>
          </div>
@@ -123,24 +124,25 @@ var numeroPagina = 2
                         <div id="conteudo">
                             ${counteudoPaginas[0][i].conteudo}
                         </div>`
-
-            versoDiv.innerHTML = `
-                    <div id="assunto">
-                        <b>Assunto:</b>
-                        <h2>${counteudoPaginas[0][i+1].assunto}</h2>
-                    </div>
-                    <div id="data">
-                        <b>Data:</b>
-                        <h2>${counteudoPaginas[0][i+1].dtRegistro}</h2>
-                    </div>
-                    <div id="sentimento">
-                                <b>Como você estava se sentindo:</b>
-                                <img src="imgs/${counteudoPaginas[0][i+1].emocao}.png">
-                                <b>${counteudoPaginas[0][i+1].emocao}</b> 
+            if(counteudoPaginas[0].length > 1){
+                versoDiv.innerHTML = `
+                        <div id="assunto">
+                            <b>Assunto:</b>
+                            <h2>${counteudoPaginas[0][i+1].assunto}</h2>
                         </div>
-                    <div id="conteudo">
-                        ${counteudoPaginas[0][i+1].conteudo}
-                    </div>`
+                        <div id="data">
+                            <b>Data:</b>
+                            <h2>${counteudoPaginas[0][i+1].dtRegistro}</h2>
+                        </div>
+                        <div id="sentimento">
+                                    <b>Como você estava se sentindo:</b>
+                                    <img src="imgs/${counteudoPaginas[0][i+1].emocao}.png">
+                                    <b>${counteudoPaginas[0][i+1].emocao}</b> 
+                            </div>
+                        <div id="conteudo">
+                            ${counteudoPaginas[0][i+1].conteudo}
+                        </div>`
+            }
                     paginaAtual++
         }
         

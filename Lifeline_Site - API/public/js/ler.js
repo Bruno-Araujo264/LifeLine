@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else if (paginaAtual === 1) { // Abrir o livro ao sair da capa.
                     abrirLivro();
                 }
-            }, 500);
+            }, 700);
         }
     }
 
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     btnVoltar.style.transform = "translateX(0px)";
                     btnAvancar.style.transform = "translateX(0px)";
                 }
-            }, 900);
+            }, 700);
         }
     }
 
