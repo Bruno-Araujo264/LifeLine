@@ -82,6 +82,7 @@ body {
     outline: none;
     background-color: transparent;
     border: none;
+    border-bottom: 1px solid black;
   }
 
   input::placeholder{
@@ -107,6 +108,7 @@ body {
 
 
 span{
+  padding-bottom: 15px;
   font-size: 30px;
 }
 

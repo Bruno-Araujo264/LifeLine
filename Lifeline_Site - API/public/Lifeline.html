@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/LifeLine.css">
     <link rel="icon" href="imgs/caderno.png">
-    <script src="js/LifeLine.js"></script>
     <title>LifeLine</title>
 </head>
 <body>
@@ -72,7 +71,10 @@
             <div class="frente">
                 <div id="f3" class="conteudo-frente">
                     <H1>ONU</H1>
-                    <span>Esse site segue os principios da onu, churusbangus churusbangus</span>
+                    <span>Esse site está dentro do 3º objetivo da ONU, saúde e bem estar.
+                          Oferecendo um ambiente seguro para registrar momentos da sua vida, ajudando no autoconhecimento, reduzindo o estresse
+                          e contribuindo para o equilíbrio emocional
+                    </span>
                 </div>
             </div>
             <div class="verso">
@@ -92,12 +94,14 @@
     <button id="avançar" onclick="paginaVirando.play()">
         <i class="seta-direita">&rarr;</i>
      </button>
+    <script src="js/LifeLine.js"></script>
 
 </body>
 </html>
 
 
 <script>
+    
     function cadastrar() {
 
 //Recupere o valor da nova input pelo nome do id
@@ -116,6 +120,10 @@ if (
 ) {
   return alert("Campos em branco")
 }
+
+btn_cadastrar.addEventListener("click", voltarPagina);
+if(validarInputs(emailVar,senhaVar)){
+
 
 // Enviando o valor da nova input
 fetch("/usuarios/cadastrar", {
@@ -150,8 +158,6 @@ fetch("/usuarios/cadastrar", {
       }, "1000");
 
     });
-
-
       limparFormulario();
     } else {
       throw "Houve um erro ao tentar realizar o cadastro!";
@@ -164,14 +170,15 @@ fetch("/usuarios/cadastrar", {
 return false;
 }
 
+}
+
 function entrar() {
 
         var emailVar = inp_emailLogin.value;
         var senhaVar = inp_senhaLogin.value;
 
-        if (emailVar == "" || senhaVar == "") {
-            return alert("Campos precisam ser preenchidos");
-        }
+        if(validarInputs(emailVar,senhaVar)){
+
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -218,6 +225,8 @@ function entrar() {
         })
 
         return false;
+    }
+
     }
 
 
