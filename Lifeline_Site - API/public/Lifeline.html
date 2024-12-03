@@ -207,6 +207,7 @@ function entrar() {
 
                     setTimeout(function () {
                         window.location = "registros.html";
+                        limparLogin()
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -228,6 +229,15 @@ function entrar() {
     }
 
     }
-
+    function limparFormulario() {
+        inp_nome.value = "";
+        inp_senhaCadastro.value = "";
+        inp_emailCadastro.value = "";
+        inp_titulo.value = "";
+    }
+    function limparLogin() {
+        inp_emailLogin.value = "";
+        inp_senhaLogin.value = "";
+    }
 
 </script>
